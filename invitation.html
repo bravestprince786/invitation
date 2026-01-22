@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manish & Soni - Wedding Invitation</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   
+    <style>
+        /* Custom Styles & Overrides */
+        :root {
+            --primary-gold: #D4AF37;
+            --soft-cream: #F9F7F2;
+            --text-dark: #2C3E50;
+        }
+
+        body {
+            /* Fixed: Changed 'Gupta' to 'Montserrat' to match imported fonts */
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--soft-cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .script-font {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* Hero Parallax Effect */
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+        }
+
+        /* Decorative Elements */
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #D4AF37;
+            max-width: 100px;
+            margin: 0 15px;
+        }
+
+        /* Animation Classes */
+        .fade-in-up {
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Form Styling */
+        .form-input {
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: #D4AF37;
+            ring: 2px solid #D4AF37;
+        }
+
+        /* Leaf decoration (SVG based in HTML) */
+        .leaf-icon {
+            color: #D4AF37;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-widest text-gray-800">M & S</div>
+            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-wider font-medium">
+                <a href="#home" class="hover:text-[#D4AF37] transition-colors">Home</a>
+                <a href="#couple" class="hover:text-[#D4AF37] transition-colors">The Couple</a>
+                <a href="#details" class="hover:text-[#D4AF37] transition-colors">Details</a>
+                <a href="#rsvp" class="hover:text-[#D4AF37] transition-colors">RSVP</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-800 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white w-full absolute top-full left-0 shadow-md py-4 flex flex-col items-center space-y-4">
+            <a href="#home" class="hover:text-[#D4AF37]">Home</a>
+            <a href="#couple" class="hover:text-[#D4AF37]">The Couple</a>
+            <a href="#details" class="hover:text-[#D4AF37]">Details</a>
+            <a href="#rsvp" class="hover:text-[#D4AF37]">RSVP</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section flex items-center justify-center text-center px-4 relative">
+        <div class="text-white fade-in-up">
+            <p class="text-xl md:text-2xl tracking-[0.2em] uppercase mb-4">We are getting married</p>
+            <h1 class="script-font text-6xl md:text-9xl mb-4">Manish & Soni</h1>
+            <div class="flex items-center justify-center space-x-4 mb-8">
+                <div class="h-px w-12 bg-white"></div>
+                <p class="text-xl md:text-3xl font-light">February 12, 2026</p>
+                <div class="h-px w-12 bg-white"></div>
+            </div>
+           
+            <!-- Countdown -->
+            <div id="countdown" class="flex flex-wrap justify-center gap-4 md:gap-8 mt-12 text-center">
+                <div class="bg-white/10 backdrop-blur-md p-4 rounded-lg w-24">
+                    <span id="days" class="block text-3xl font-bold">00</span>
+                    <span class="text-xs uppercase tracking-wider">Days</span>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-4 rounded-lg w-24">
+                    <span id="hours" class="block text-3xl font-bold">00</span>
+                    <span class="text-xs uppercase tracking-wider">Hours</span>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-4 rounded-lg w-24">
+                    <span id="minutes" class="block text-3xl font-bold">00</span>
+                    <span class="text-xs uppercase tracking-wider">Mins</span>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-4 rounded-lg w-24">
+                    <span id="seconds" class="block text-3xl font-bold">00</span>
+                    <span class="text-xs uppercase tracking-wider">Secs</span>
+                </div>
+            </div>
+        </div>
+       
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-8 animate-bounce text-white">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- The Couple Section -->
+    <section id="couple" class="py-20 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="script-font text-5xl text-[#D4AF37] mb-2">The Happy Couple</h2>
+            <div class="divider"><i class="fas fa-heart text-[#D4AF37]"></i></div>
+           
+            <div class="flex flex-col md:flex-row items-center justify-center gap-12 mt-12">
+                <!-- Groom -->
+                <div class="max-w-xs text-center">
+                    <div class="w-43 h-43 mx-auto rounded-full overflow-hidden border-4 border-[#D4AF37] mb-6 shadow-xl">
+                        <img src="https://i.postimg.cc/SXWZK96k/DSC_3443.jpg" alt="Manish" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Manish Kumar</h3>
+                    <p class="text-gray-600 italic">"Once in a while, right in the middle of an ordinary life, love gives us a fairy tale"</p>
+                </div>
+
+                <div class="text-4xl text-[#D4AF37] font-serif">&</div>
+
+                <!-- Bride -->
+                <div class="max-w-xs text-center">
+                    <div class="w-43 h-43 mx-auto rounded-full overflow-hidden border-4 border-[#D4AF37] mb-6 shadow-xl">
+                        <img src="https://i.postimg.cc/v1cVqwmP/DSC_3118.jpg" alt="Soni" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Soni Kumari</h3>
+                    <p class="text-gray-600 italic">"Every love story is beautiful, but ours is my favorite."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Details Section -->
+    <section id="details" class="py-20 bg-[#F9F7F2]">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="script-font text-5xl text-[#D4AF37] mb-2">Wedding Details</h2>
+                <div class="divider"><i class="fas fa-praying-hands text-[#D4AF37]"></i></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">We invite you to share in our joy and request the honor of your presence at our wedding.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Marriage Ceremony -->
+                <div class="bg-white p-10 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition duration-300">
+                    <div class="text-[#D4AF37] text-4xl mb-4"><i class="fas fa-gopuram temple-icon"></i></div>
+                    <h3 class="text-2xl font-bold mb-4 uppercase tracking-wider">The Marriage Ceremony</h3>
+                    <p class="text-lg font-bold mb-2"	>12th Feb 2026 @7:00 PM</p>
+                    <p class="text-gray-600 mb-4">
+                        Hotel Shivaay Blue<br>
+                        Koyal River, Nawatoli Rd, Near Chitragupta Mandir, Daltonganj 822101<br>
+                        Jharkhand
+                    </p>
+                    <a href="https://maps.app.goo.gl/oJQ1YttZ7FuxQ6qD9" class="inline-block text-[#D4AF37] hover:underline text-sm font-semibold uppercase tracking-wide">View Map</a>
+                </div>
+
+                <!-- Reception -->
+                <div class="bg-white p-10 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition duration-300">
+                    <div class="text-[#D4AF37] text-4xl mb-4"><i class="fas fa-utensils"></i></div>
+                    <h3 class="text-2xl font-bold mb-4 uppercase tracking-wider">The Reception</h3>
+                    <p class="text-lg font-bold mb-2">14th Feb 2026 @7:00 PM</p>
+                    <p class="text-gray-600 mb-4">
+                       Ceremonia Banquet Hall<br>
+                       Bhadani Compound <br> 
+		       Katari Hill Rd<br> Gaya, Bihar 823001
+                    </p>
+                    <a href="https://maps.app.goo.gl/fdCfvZomFPxeTqEo9" class="inline-block text-[#D4AF37] hover:underline text-sm font-semibold uppercase tracking-wide">View Map</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="py-20 bg-white relative">
+        <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-2xl mx-auto bg-[#F9F7F2] p-8 md:p-12 rounded-xl shadow-2xl border border-gray-100">
+                <div class="text-center mb-8">
+                    <h2 class="script-font text-5xl text-[#D4AF37] mb-2">R.S.V.P</h2>
+                    <p class="uppercase tracking-widest text-sm text-gray-500">We are looking forward to celebrate this special occasion with you and 				creating cherished memories</p>
+                </div>
+
+                <form id="rsvpForm" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Papa</label>
+                        <input type="text" id="name" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] outline-none bg-white" placeholder="Raju Prasad Gupta" disabled>
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Bhaiya</label>
+                        <input type="email" id="email" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] outline-none bg-white" placeholder="Mukesh Kumar Gupta" disabled>
+                    </div>
+	            <div>
+			<h4>Point of contact</h4>
+                       <!-- Clickable phone number -->
+    <p></br>
+        📞 <a href="tel:+919386841603">+91 93868 41603</a></br>
+	📞 <a href="tel:+918789686954">+91 87896 86954</a>
+    </p>
+		    </div>
+                    
+                </form>
+
+                <!-- Success Message (Hidden by default) -->
+                <div id="successMessage" class="hidden text-center mt-6 p-4 bg-green-50 text-green-800 rounded-md border border-green-200">
+                    <i class="fas fa-check-circle text-2xl mb-2"></i>
+                    <p class="font-bold">Thank you!</p>
+                    <p>Your RSVP has been sent successfully.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 text-center">
+        <h2 class="script-font text-4xl mb-4">Manish & Soni</h2>
+        <p class="uppercase tracking-widest text-xs mb-8">February 12, 2026 &bull; Chhotki Delha, Gayaji, Bihar, IN</p>
+        <div class="flex justify-center space-x-4 mb-8">
+            <a href="https://www.instagram.com/mr.mannny_gupta/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4AF37] transition-colors"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/bravestprince786" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4AF37] transition-colors"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4AF37] transition-colors"><i class="fas fa-hashtag"></i></a>
+        </div>
+        <p class="text-gray-500 text-xs">&copy; 2026 Wedding Invitation. Made with Love.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Toggle Mobile Menu
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+
+            if (btn && menu) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                });
+            }
+
+            // Countdown Timer Logic
+            // Fixed: Updated year to 2026 to ensure countdown works in demo
+            const weddingDate = new Date("February 12, 2026 16:00:00").getTime();
+
+            const x = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = weddingDate - now;
+
+                // If date is in past, set to 0
+                if (distance < 0) {
+                    const countdownEl = document.getElementById("countdown");
+                    if (countdownEl) {
+                        countdownEl.innerHTML = '<div class="text-2xl font-bold">Happily Ever After!</div>';
+                    }
+                    clearInterval(x);
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                const elDays = document.getElementById("days");
+                const elHours = document.getElementById("hours");
+                const elMinutes = document.getElementById("minutes");
+                const elSeconds = document.getElementById("seconds");
+
+                if (elDays) elDays.innerText = days < 10 ? '0' + days : days;
+                if (elHours) elHours.innerText = hours < 10 ? '0' + hours : hours;
+                if (elMinutes) elMinutes.innerText = minutes < 10 ? '0' + minutes : minutes;
+                if (elSeconds) elSeconds.innerText = seconds < 10 ? '0' + seconds : seconds;
+            }, 1000);
+
+            // Form Handling
+            const form = document.getElementById('rsvpForm');
+            const successMsg = document.getElementById('successMessage');
+
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                   
+                    // Simulate API call/processing
+                    const btn = form.querySelector('button');
+                    const originalText = btn.innerText;
+                    btn.innerText = 'Sending...';
+                    btn.disabled = true;
+
+                    setTimeout(() => {
+                        form.style.display = 'none';
+                        if (successMsg) successMsg.classList.remove('hidden');
+                        btn.innerText = originalText;
+                        btn.disabled = false;
+                    }, 1500);
+                });
+            }
+
+            // Smooth Scroll for Anchor links
+            // Fixed: Exclude links that are just "#" to prevent "is not a valid selector" error
+            document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (menu) menu.classList.add('hidden'); // Close mobile menu on click
+                   
+                    const targetId = this.getAttribute('href');
+                    if (targetId && targetId !== '#') {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
